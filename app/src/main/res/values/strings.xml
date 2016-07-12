@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">CustomViews</string>
+
+    <!-- Measurement comparison -->
+    <string name="match_parent">match_parent</string>
+    <string name="wrap_content">wrap_content</string>
+    <string name="exactly">exactly</string>
+    <string name="at_most">at_most</string>
+    <string name="unspecified">unspecified</string>
+    <string name="layout_width_format">layout_width: %s</string>
+    <string name="layout_height_format">layout_height: %s</string>
+    <string name="spec_width_format">width spec: %s</string>
+    <string name="spec_height_format">height spec: %s</string>
+
 </resources>
