@@ -2,9 +2,9 @@
     <string name="app_name">CustomViews</string>
 
     <!-- LayoutParams/MeasureSpec comparison -->
-    <string name="parent_timer_layout_params_format">Parent\nlayout_weight=%1$s\nlayout_height=%2$s\nTimerView\nlayout_weight=%3$s\nlayout_height=%4$s</string>
+    <string name="parent_timer_layout_params_format">Parent\nlayout_weight=%1$s\nlayout_height=%2$s\n\nTimer\nlayout_weight=%3$s\nlayout_height=%4$s</string>
     <string name="timer_width_height">getMeasuredWidth()=%1$s\ngetMeasuredHeight()=%2$s</string>
-    <string name="timer_all_width_height">getMeasuredWidth()=%1$s\ngetMeasuredHeight()=%2$s\ngetWidth()=%3$s\ngetHeight()=%4$s</string>
+    <string name="timer_all_width_height">getMeasuredWidth()=%1$s\ngetMeasuredHeight()=%2$s\n\ngetWidth()=%3$s\ngetHeight()=%4$s</string>
 
     <!-- Parent information -->
     <string name="parent_dimensions_format">Parent:\nwidth=%1$s, height=%2$s</string>
@@ -20,7 +20,7 @@
     <string name="unspecified">unspecified</string>
     <string name="layout_width_format">layout_width: %s</string>
     <string name="layout_height_format">layout_height: %s</string>
-    <string name="spec_width_format">width spec: %s</string>
-    <string name="spec_height_format">height spec: %s</string>
+    <string name="spec_width_format">Width spec: %s</string>
+    <string name="spec_height_format">Height spec: %s</string>
 
 </resources>

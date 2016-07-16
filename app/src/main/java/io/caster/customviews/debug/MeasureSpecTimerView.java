@@ -68,31 +68,17 @@ public class MeasureSpecTimerView extends TimerView {
         Paint.FontMetrics sizeFontMetrics = sizePaint.getFontMetrics();
         Resources resources = getResources();
 
-        // Draw layout params.
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        String widthParams = String.format(resources.getString(R.string.layout_width_format),
-            MeasureUtils.layoutParamToString(resources, layoutParams.width)).toUpperCase();
-        float textOffsetX = sizePaint.measureText(widthParams) * 0.5f;
-        float textOffsetY = numberFontMetrics.ascent * 0.8f;
-        canvas.drawText(widthParams, centerX - textOffsetX, centerY + textOffsetY, sizePaint);
-        String heightParams = String.format(resources.getString(R.string.layout_height_format),
-            MeasureUtils.layoutParamToString(resources, layoutParams.height)).toUpperCase();
-        textOffsetX = sizePaint.measureText(heightParams) * 0.5f;
-        textOffsetY += sizeFontMetrics.descent + -sizeFontMetrics.top;
-        canvas.drawText(heightParams, centerX - textOffsetX, centerY + textOffsetY,
-            sizePaint);
-
         // Draw width measure spec.
         String measureSpec = String.format(resources.getString(R.string.spec_width_format),
-            measureSpecToString(widthMeasureSpec)).toUpperCase();
-        textOffsetX = sizePaint.measureText(measureSpec) * 0.5f;
-        textOffsetY = numberFontMetrics.ascent * -0.4f +
+            measureSpecToString(widthMeasureSpec));
+        float textOffsetX = sizePaint.measureText(measureSpec) * 0.5f;
+        float textOffsetY = numberFontMetrics.ascent * -0.4f +
             8f * resources.getDisplayMetrics().density + -sizeFontMetrics.top;
         canvas.drawText(measureSpec, centerX - textOffsetX, centerY + textOffsetY,
             sizePaint);
         // Draw height measure spec.
         measureSpec = String.format(resources.getString(R.string.spec_height_format),
-            measureSpecToString(heightMeasureSpec)).toUpperCase();
+            measureSpecToString(heightMeasureSpec));
         textOffsetX = sizePaint.measureText(measureSpec) * 0.5f;
         textOffsetY += sizeFontMetrics.descent + -sizeFontMetrics.top;
         canvas.drawText(measureSpec, centerX - textOffsetX, centerY + textOffsetY,
@@ -121,7 +107,7 @@ public class MeasureSpecTimerView extends TimerView {
                 break;
         }
 
-        return mode + " " + MeasureUtils.pixelsToDPString(resources,
+        return mode.toUpperCase() + " " + MeasureUtils.pixelsToDPString(resources,
             MeasureSpec.getSize(measureSpec));
     }
 }
