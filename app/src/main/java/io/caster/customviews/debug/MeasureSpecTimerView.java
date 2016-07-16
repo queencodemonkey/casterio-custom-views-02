@@ -9,6 +9,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
+import io.caster.customviews.util.MeasureUtils;
 import io.caster.customviews.R;
 import io.caster.customviews.TimerView;
 
@@ -17,6 +18,7 @@ import io.caster.customviews.TimerView;
  * parent measure specs to the screen.
  */
 public class MeasureSpecTimerView extends TimerView {
+
     // Fields for displaying measure spec.
     private int widthMeasureSpec;
     private int heightMeasureSpec;
@@ -40,7 +42,7 @@ public class MeasureSpecTimerView extends TimerView {
         // Just for measure spec display.
         sizePaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         sizePaint.setColor(ContextCompat.getColor(getContext(), android.R.color.white));
-        sizePaint.setTextSize(12f * getResources().getDisplayMetrics().scaledDensity);
+        sizePaint.setTextSize(14f * getResources().getDisplayMetrics().scaledDensity);
     }
 
     //
@@ -69,32 +71,32 @@ public class MeasureSpecTimerView extends TimerView {
         // Draw layout params.
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         String widthParams = String.format(resources.getString(R.string.layout_width_format),
-                layoutParamToString(layoutParams.width)).toUpperCase();
+            MeasureUtils.layoutParamToString(resources, layoutParams.width)).toUpperCase();
         float textOffsetX = sizePaint.measureText(widthParams) * 0.5f;
         float textOffsetY = numberFontMetrics.ascent * 0.8f;
         canvas.drawText(widthParams, centerX - textOffsetX, centerY + textOffsetY, sizePaint);
         String heightParams = String.format(resources.getString(R.string.layout_height_format),
-                layoutParamToString(layoutParams.height)).toUpperCase();
+            MeasureUtils.layoutParamToString(resources, layoutParams.height)).toUpperCase();
         textOffsetX = sizePaint.measureText(heightParams) * 0.5f;
         textOffsetY += sizeFontMetrics.descent + -sizeFontMetrics.top;
         canvas.drawText(heightParams, centerX - textOffsetX, centerY + textOffsetY,
-                sizePaint);
+            sizePaint);
 
         // Draw width measure spec.
         String measureSpec = String.format(resources.getString(R.string.spec_width_format),
-                measureSpecToString(widthMeasureSpec)).toUpperCase();
+            measureSpecToString(widthMeasureSpec)).toUpperCase();
         textOffsetX = sizePaint.measureText(measureSpec) * 0.5f;
-        textOffsetY =  numberFontMetrics.ascent * -0.4f +
-                8f * resources.getDisplayMetrics().density + -sizeFontMetrics.top;
+        textOffsetY = numberFontMetrics.ascent * -0.4f +
+            8f * resources.getDisplayMetrics().density + -sizeFontMetrics.top;
         canvas.drawText(measureSpec, centerX - textOffsetX, centerY + textOffsetY,
-                sizePaint);
+            sizePaint);
         // Draw height measure spec.
         measureSpec = String.format(resources.getString(R.string.spec_height_format),
-                measureSpecToString(heightMeasureSpec)).toUpperCase();
+            measureSpecToString(heightMeasureSpec)).toUpperCase();
         textOffsetX = sizePaint.measureText(measureSpec) * 0.5f;
         textOffsetY += sizeFontMetrics.descent + -sizeFontMetrics.top;
         canvas.drawText(measureSpec, centerX - textOffsetX, centerY + textOffsetY,
-                sizePaint);
+            sizePaint);
     }
 
     //
@@ -102,33 +104,24 @@ public class MeasureSpecTimerView extends TimerView {
     //
 
     private String measureSpecToString(int measureSpec) {
+        Resources resources = getResources();
         String mode;
         switch (MeasureSpec.getMode(measureSpec)) {
             case MeasureSpec.EXACTLY:
-                mode = getResources().getString(R.string.exactly);
+                mode = resources.getString(R.string.exactly);
                 break;
             case MeasureSpec.AT_MOST:
-                mode = getResources().getString(R.string.at_most);
+                mode = resources.getString(R.string.at_most);
                 break;
             case MeasureSpec.UNSPECIFIED:
-                mode = getResources().getString(R.string.unspecified);
+                mode = resources.getString(R.string.unspecified);
                 break;
             default:
                 mode = "";
                 break;
         }
 
-        return mode + " " + MeasureSpec.getSize(measureSpec);
-    }
-
-    private String layoutParamToString(int param) {
-        switch (param) {
-            case ViewGroup.LayoutParams.MATCH_PARENT:
-                return getResources().getString(R.string.match_parent);
-            case ViewGroup.LayoutParams.WRAP_CONTENT:
-                return getResources().getString(R.string.wrap_content);
-            default:
-                return "";
-        }
+        return mode + " " + MeasureUtils.pixelsToDPString(resources,
+            MeasureSpec.getSize(measureSpec));
     }
 }
