@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 ext.versions = [
-        support: "23.4.0",
-        constraintlayout: "1.0.0-alpha3"
+        support: "24.0.0",
+        constraintlayout: "1.0.0-alpha3",
+        butterknife: "8.2.1"
 ]
 
 def versionMajor = 1
@@ -11,12 +13,12 @@ def versionPatch = 0
 def versionBuild = 0
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion '24'
     defaultConfig {
         applicationId "io.caster.customviews"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,6 +38,9 @@ dependencies {
     // Android: Widgets
     compile "com.android.support.constraint:constraint-layout-solver:${versions.constraintlayout}"
     compile "com.android.support.constraint:constraint-layout:${versions.constraintlayout}"
+    // ButterKnife
+    compile "com.jakewharton:butterknife:${versions.butterknife}"
+    apt "com.jakewharton:butterknife-compiler:${versions.butterknife}"
     // Testing
     testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
